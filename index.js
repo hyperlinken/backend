@@ -38,9 +38,9 @@ app.get("/",(req,res,next)=>{
     res.sendFile("index.html",options);
 })
 
-app.get("/hi" , (req,res,next)){
+app.get("/hi" , (req,res)=>{
     res.send("hi");
-}
+})
 
 const upload=multer({storage: storage});
 
