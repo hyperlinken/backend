@@ -11,6 +11,8 @@ const server=http.createServer(app);
 
 const io= socketIo(server);
 
+app.use(express.urlencoded({extended: false}));
+
 const storage=multer.diskStorage({
     destination:(req,file,cb)=>{
         return cb(null,"./uploads");
@@ -36,8 +38,9 @@ app.get("/",(req,res,next)=>{
     res.sendFile("index.html",options);
 })
 
-
-app.use(express.urlencoded({extended: false}));
+app.get("/hi" , (req,res,next)){
+    res.send("hi");
+}
 
 const upload=multer({storage: storage});
 
