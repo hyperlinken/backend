@@ -32,10 +32,7 @@ io.on('connection',(socket)=>{
 
 
 app.get("/",(req,res,next)=>{
-    const options = {
-        root: path.join(__dirname)
-    };
-    res.sendFile("index.html",options);
+    res.render(path.join(__dirname + "/home"));
 })
 
 app.get("/hi" , (req,res)=>{
