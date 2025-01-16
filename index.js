@@ -31,7 +31,7 @@ io.on('connection',(socket)=>{
 // const server=http.createServer(app);
 
 
-app.get("/",(req,res)=>{
+app.get("/", async (req,res)=>{
     res.render("home");
 })
 
