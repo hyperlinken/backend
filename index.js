@@ -31,8 +31,8 @@ io.on('connection',(socket)=>{
 // const server=http.createServer(app);
 
 
-app.get("/",(req,res,next)=>{
-    res.render(path.join(__dirname + "/home"));
+app.get("/",(req,res)=>{
+    res.render("home");
 })
 
 app.get("/hi" , (req,res)=>{
