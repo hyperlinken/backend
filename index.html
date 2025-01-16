@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="message" id="msg" placeholder="enter your message">
+    <button type="submit" onclick="send()" id="send">send</button>
+    <form action="/uploads" method="post" enctype="multipart/form-data">
+        <input name="profileImage" type="file">
+        <button type="submit">upload</button>
+    </form>
+    <div id="viewMessage">
+        
+    </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+    <script>
+
+        const btn=document.getElementById('msg');
+
+        btn.addEventListener('keypress',(event)=>{
+            if(event.keyCode===13){
+                event.preventDefault();
+                send();
+            }
+        })
+
+        function addtext(text){
+            const p = document.createElement('p');
+            const txt=document.createTextNode(text);
+            const write = document.getElementById("viewMessage");
+
+            p.appendChild(txt);
+            write.append(p);
+        }
+
+        const socket=io();
+        function send(){
+            const mesage=document.getElementById("msg");
+            const msg=mesage.value;
+            mesage.value='';
+            socket.emit('user-msg',msg);
+        }
+        socket.on('msg',(msg)=>{
+            console.log(msg);
+            // var divi=document.getElementById('viewMessage');
+            addtext(msg);
+        })
+
+    </script>
+</html>
