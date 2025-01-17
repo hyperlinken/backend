@@ -33,13 +33,14 @@ io.on('connection',(socket)=>{
 
 
 app.get("/", async (req,res)=>{
-    axios.get('https://hyperlinken.github.io/frontend/')
-    .then((response) => {
-        if(response.status === 200) {
-        const html = response.data;
-        res.send(html);
-    }
-    }, (error) => console.log(err) );
+    res.send("no");
+    // axios.get('https://hyperlinken.github.io/frontend/')
+    // .then((response) => {
+    //     if(response.status === 200) {
+    //     const html = response.data;
+    //     res.send(html);
+    // }
+    // }, (error) => console.log(err) );
 })
 
 app.get("/hi" , (req,res)=>{
