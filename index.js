@@ -3,6 +3,7 @@ const http=require('http');
 const socketIo=require('socket.io');
 const path=require('path');
 const multer = require('multer');
+const axios = require('axios');
 
 
 const app= express();
@@ -32,7 +33,13 @@ io.on('connection',(socket)=>{
 
 
 app.get("/", async (req,res)=>{
-    res.render("home");
+    axios.get('https://hyperlinken.github.io/frontend/')
+    .then((response) => {
+        if(response.status === 200) {
+        const html = response.data;
+        res.send(html);
+    }
+    }, (error) => console.log(err) );
 })
 
 app.get("/hi" , (req,res)=>{
