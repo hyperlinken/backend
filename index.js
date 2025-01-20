@@ -4,6 +4,7 @@ const socketIo=require('socket.io');
 const path=require('path');
 const multer = require('multer');
 const axios = require('axios');
+const cors = require('cors');
 
 
 const app= express();
@@ -13,6 +14,14 @@ const server=http.createServer(app);
 const io= socketIo(server);
 
 app.use(express.urlencoded({extended: false}));
+app.use(cors());
+
+const io = socketIo(server, {
+    cors: {
+      origin: "https://your-github-pages-url.github.io", // Replace with your GitHub Pages URL
+      methods: ["GET", "POST"]
+    }
+});
 
 const storage=multer.diskStorage({
     destination:(req,file,cb)=>{
@@ -55,8 +64,8 @@ app.post("/uploads",upload.single("profileImage"),(req,res,next)=>{
      res.redirect("/");
 })
 
-const port=3001;
-server.listen(process.env.PORT,()=>{
+const port=process.env.PORT || 3000;
+server.listen(port,()=>{
     console.log(`server running on http://127.0.0.1:${port}`);
 })
 
