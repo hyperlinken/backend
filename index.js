@@ -18,7 +18,7 @@ app.use(cors());
 
 const io = socketIo(server, {
     cors: {
-      origin: "https://your-github-pages-url.github.io", // Replace with your GitHub Pages URL
+      origin: "https://hyperlinken.github.io/frontend/", // Replace with your GitHub Pages URL       REPLACED
       methods: ["GET", "POST"]
     }
 });
