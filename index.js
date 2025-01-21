@@ -13,7 +13,7 @@ const server=http.createServer(app);
 
 // const io= socketIo(server);
 
-app.use(express.urlencoded({extended: false}));
+// app.use(express.urlencoded({extended: false}));
 app.use(cors());
 
 const io = socketIo(server, {
@@ -43,13 +43,13 @@ io.on('connection',(socket)=>{
 
 app.get("/", async (req,res)=>{
     // res.send("no");
-    axios.get('https://hyperlinken.github.io/frontend/')
-    .then((response) => {
-        if(response.status === 200) {
-        const html = response.data;
-        res.send(html);
-    }
-    }, (error) => console.log(err) );
+    // axios.get('https://hyperlinken.github.io/frontend/')
+    // .then((response) => {
+    //     if(response.status === 200) {
+    //     const html = response.data;
+    //     res.send(html);
+    // }
+    // }, (error) => console.log(err) );
 })
 
 app.get("/hi" , (req,res)=>{
