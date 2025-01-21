@@ -14,13 +14,17 @@ const server=http.createServer(app);
 // const io= socketIo(server);
 
 // app.use(express.urlencoded({extended: false}));
-app.use(cors());
+app.use(cors({
+    origin: 'https://hyperlinken.github.io', // Allow your frontend origin
+    methods: ['GET', 'POST'],
+    credentials: true,
+}));
 
-const io = socketIo(server, {
+const io = new Server(server, {
     cors: {
-      origin: "https://hyperlinken.github.io", // Replace with your GitHub Pages URL       REPLACED
-      methods: ["GET", "POST"]
-    }
+        origin: 'https://hyperlinken.github.io', // Allow WebSocket connections from this origin
+        methods: ['GET', 'POST'],
+    },
 });
 
 const storage=multer.diskStorage({
