@@ -21,6 +21,7 @@ app.use(cors({
 }));
 
 const io = new Server(server, {
+    transports: ["polling"],
     cors: {
         origin: 'https://hyperlinken.github.io', // Allow WebSocket connections from this origin
         methods: ['GET', 'POST'],
